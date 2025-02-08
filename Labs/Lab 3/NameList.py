@@ -1,3 +1,5 @@
+#Joanna Escobar
+
 def nameInList(name, list):
     """Input a name and a list to seach through. 
     Returns if name was found"""

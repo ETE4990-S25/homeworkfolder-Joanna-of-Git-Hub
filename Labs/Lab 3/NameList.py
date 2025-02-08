@@ -4,6 +4,6 @@ def nameInList(name, list):
 
 
     if name in list:
-        print(name + "was in the list.")
+        print(name + " was in the list.")
     else:
-        print(name + "was not in the list.")
+        print(name + " was NOT in the list.")

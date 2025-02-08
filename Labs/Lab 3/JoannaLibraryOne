@@ -1,0 +1,7 @@
+def rolldice():
+    """A function that rolls a six-sided dice and returns the value."""
+    
+    import random
+    roll = random.rantint(1,6)
+    return(roll)
+

@@ -3,7 +3,7 @@ def nameInList(name, list):
     Returns if name was found"""
 
     for items in list:
-        if name == list[items]:
+        if name in list[items]:
             print(name + "was in the list.")
         else:
             print(name + "was not in the list.")

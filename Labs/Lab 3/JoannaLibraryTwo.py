@@ -13,6 +13,3 @@ def personalizedGreeting():
     
     Name = input("Hi! What's your name?")
     print("Hi there " + Name)
-
-rolldice()
-personalizedGreeting()

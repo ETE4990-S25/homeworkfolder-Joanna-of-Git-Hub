@@ -8,7 +8,10 @@ class Person():
         self.age = age
         self.email = email
 
-    def save_person():
+    def json_save_person():
+        #placeholder
+
+    def json_screen_person():
         #placeholder
 
 
@@ -18,5 +21,8 @@ class Student(Person):
         "Initializing student details."
         self.student_id = student_id
     
-    def save_student():
+    def json_save_student():
+        #placeholder
+
+    def json_screen_student():
         #placeholder

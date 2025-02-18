@@ -1,4 +1,5 @@
 import json
+# more information on how to store json files in Lecture 6
 
 class Person():
     """A person in general."""

@@ -1,3 +1,5 @@
+import json
+
 class Person():
     """A person in general."""
     def __init__(self,name,age,email):
@@ -6,16 +8,15 @@ class Person():
         self.age = age
         self.email = email
 
-    def storePerson():
+    def save_person():
         #placeholder
 
 
 class Student(Person):
     """A student."""
-    def __init__(self,student_id):
+    def __init__(self, student_id):
         "Initializing student details."
         self.student_id = student_id
     
-    def store_student():
+    def save_student():
         #placeholder
-

@@ -6,8 +6,16 @@ class Person():
         self.age = age
         self.email = email
 
+    def storePerson():
+        #placeholder
+
+
 class Student(Person):
     """A student."""
     def __init__(self,student_id):
         "Initializing student details."
+        self.student_id = student_id
+    
+    def store_student():
+        #placeholder
 

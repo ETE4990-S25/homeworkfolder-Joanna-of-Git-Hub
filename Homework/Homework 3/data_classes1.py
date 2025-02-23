@@ -1,17 +1,15 @@
-# more information on how to store json files in Lecture 6
 
 class Person(object):
     """A person in general."""
     import json
-    def __init__(self,name,age,email):
+    def __init__(self, name, age, email):
         """Initialize personal details."""
         self.name = name
         self.age = age
         self.email = email
-
+    
     def save_file(self):
-        """Take the info from Person and make it a dictionary."""
-                
+        """Take info from Person and put in json file."""
         person_info = {
             "name": self.name,
             "age": self.age,
@@ -19,14 +17,17 @@ class Person(object):
         }
         person_file = 'personfile.json'
         with open(person_file, 'w') as f:
-            json.dump(person_info, f)                
-    def display_file(self):
-        #placeholder
+            json.dump(person_info, f)
 
-   
+    def show_file(self):
+        filename = 'personfile.json'
+        with open(filename) as f:
+            person_json = json.load(f)
+
+        print(person_json)
 
 class Student(Person):
     """A student."""
     def __init__(self, student_id):
-        "Initializing student details."
+        """Initializing student details."""
         self.student_id = student_id

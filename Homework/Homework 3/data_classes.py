@@ -9,6 +9,20 @@ class Person():
         self.age = age
         self.email = email
 
+    def save_file(self):
+        """Take the info from Person and make it a dictionary."""
+        person_info = {
+            "name": self.name,
+            "age": self.age,
+            "email": self.email
+        }
+
+        return person_info
+
+
+    def display_file(self):
+        #placeholder
+
    
 
 class Student(Person):
@@ -18,8 +32,5 @@ class Student(Person):
         self.student_id = student_id
     
     
-def save_file():
-    #placeholder
 
-def display_file():
-    #placeholder
+

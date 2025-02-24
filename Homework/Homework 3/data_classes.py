@@ -28,6 +28,9 @@ class Person(object):
 
 class Student(Person):
     """A student."""
-    def __init__(self, student_id):
+    def __init__(self, name, age, email):
         """Initializing student details."""
-        self.student_id = student_id
+        super(Person, self).__init__(name, age, email)
+
+        self.student_id = 000000
+        

@@ -30,7 +30,7 @@ class Student(Person):
     """A student."""
     def __init__(self, name, age, email):
         """Initializing student details."""
-        super(Person, self).__init__(name, age, email)
+        super().__init__(name, age, email)
 
         self.student_id = 000000
         

@@ -1,3 +1,4 @@
+#Joanna Escobar
 import json
 class Person(object):
     """A person in general."""
@@ -32,5 +33,6 @@ class Student(Person):
         """Initializing student details."""
         super().__init__(name, age, email)
 
-        self.student_id = 000000
+    def get_id(self):
+        self.student_id = input("Input your ID number: ")
         

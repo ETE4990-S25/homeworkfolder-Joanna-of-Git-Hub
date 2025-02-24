@@ -1,7 +1,7 @@
-
+import json
 class Person(object):
     """A person in general."""
-    import json
+    
     def __init__(self, name, age, email):
         """Initialize personal details."""
         self.name = name

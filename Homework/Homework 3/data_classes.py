@@ -1,5 +1,8 @@
 #Joanna Escobar
 import json
+global counter
+counter = 0
+
 class Person(object):
     """A person in general."""
     
@@ -20,9 +23,18 @@ class Person(object):
     
     def save_file(self):
         """Take info from Person and put in json file."""     
-        
-        with open(self.person_file, 'w') as f: #using 'a' appends data instead of overwriting existing data
-            json.dump(self.person_info, f)
+        counter+=1
+
+        #json file management
+        if (counter==0):
+            #creates new json file
+            with open(self.person_file, 'w') as f: 
+                json.dump(self.person_info, f)
+        else:
+            #using 'a' appends data instead of overwriting existing data
+            with open(self.person_file,'a') as f: 
+                json.dump(self.person_info, f)
+
 
     def show_file(self):
         self.person_file = 'personfile.json'

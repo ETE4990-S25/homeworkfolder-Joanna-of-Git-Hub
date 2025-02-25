@@ -35,4 +35,5 @@ class Student(Person):
 
     def get_id(self):
         self.student_id = input("Input your ID number: ")
-        
+        with open(self.student_id, 'w') as g:
+            json.dump(self.student_id, g)

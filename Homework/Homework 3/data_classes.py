@@ -21,7 +21,7 @@ class Person(object):
             "email": self.email
         }
         
-        with open(self.person_file, 'w') as f:
+        with open(self.person_file, 'a') as f:
             json.dump(person_info, f)
 
     def show_file(self):

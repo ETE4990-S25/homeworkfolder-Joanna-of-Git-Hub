@@ -1,10 +1,10 @@
-1 it's 1
-2 ceiling 2
-3 a 3
-4 box 4
-5 rug 5
-6 bird 6
-7 movie 7
-8 ocean 8
-9 yellow 9
-10 clock 10
+1 it's
+2 ceiling
+3 a
+4 box
+5 rug
+6 bird
+7 movie
+8 ocean
+9 yellow
+10 clock

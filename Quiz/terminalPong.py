@@ -60,10 +60,10 @@ def draw_screen(width, height):
 def main():
     height, width = 20, 50
     
-    ball_process = #Multi process solution here
+    ball_process = multiprocessing(ball_x,ball_y)
     ball_process.start()
     
-    input_thread = #threaded solution here
+    input_thread = threading(ball_x,ball_y)
     input_thread.start()
     
     try:

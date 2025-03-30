@@ -13,15 +13,25 @@ def is_prime(n):
 if __name__ == "__main__":
     processes = []
     i = 0
+    flag = True
+ 
+    end_time = time.time() + (3*60) # setting the end time to 3 minutes after starting
+    print(f"End Time: {end_time}")
 
-    start_time = time.time()
-    end_time = start_time + (3*60) # setting the end time to 3 minutes after starting
-    
-    for i in range(0,):
+    while time.time() < end_time:
+        print(i)
         p = multiprocessing.Process(target=is_prime, args=(i,))
         processes.append(p)        
         p.start()
         
-        if time.time() == end_time:
-            p.join()
-            print(f"Largest Prime: {i}")
+        # if time.time() >= end_time:
+        #     flag = False
+        #     p.join()
+        #     print(f"Largest Prime: {processes[i]}")
+
+        #     break
+        
+        i = i + 1
+
+    for p in processes: 
+        p.join()

@@ -11,27 +11,24 @@ def is_prime(n):
 
 
 if __name__ == "__main__":
-    processes = []
-    i = 0
-    flag = True
+    # processes = []
+    # i = 0
+    rangec = range(0,100001)
+    
+    #locking mechanism taken from ChatGPT
+    largest_prime = multiprocessing.Value('i', 0)  
+    lock = multiprocessing.Lock()  
  
     end_time = time.time() + (3*60) # setting the end time to 3 minutes after starting
     print(f"End Time: {end_time}")
 
-    while time.time() < end_time:
-        print(i)
-        p = multiprocessing.Process(target=is_prime, args=(i,))
-        processes.append(p)        
-        p.start()
-        
-        # if time.time() >= end_time:
-        #     flag = False
-        #     p.join()
-        #     print(f"Largest Prime: {processes[i]}")
+    with multiprocessing.Pool(10) as p:
+        while time.time() < end_time:
+            p.map(is_prime, rangec) #args section from ChatGPT
+            # processes.append(p)        
 
-        #     break
-        
-        i = i + 1
+            
+            # i = i + 1
 
-    for p in processes: 
-        p.join()
+
+    print(f"Largest Prime: {largest_prime.value}")

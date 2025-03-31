@@ -25,9 +25,11 @@ if __name__ == "__main__":
     end_time = time.time() + (3*60) # setting the end time to 3 minutes after starting
     print(f"End Time: {end_time}")
 
+    i = 0
+
     while time.time() < end_time:
         print(i)
-        p = Process(target=is_prime, args=(i,largest_prime, lock)) #args section from ChatGPT
+        p = Process(target=is_prime, args=(i * range_per_process + 1, (i + 1) * range_per_process + 1, child_conns[i]))
         processes.append(p)        
         p.start()
 

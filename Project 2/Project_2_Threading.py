@@ -3,6 +3,7 @@ from queue import Queue, Empty
 import time
 
 n = 0
+THREAD_POOL_SIZE = 10
 
 def is_prime(n):
     if n <= 1:
@@ -20,7 +21,7 @@ def worker(work_queue): # Taken from Mr. Power's lecture notes.
             break
         else:
             # fetch_rate(base, rates,False, True)
-            is_prime(n)
+            is_prime(item)
             work_queue.task_done()
 
 def threaded_pool(): # Taken from Mr. Power's lecture notes.           
@@ -33,8 +34,8 @@ def threaded_pool(): # Taken from Mr. Power's lecture notes.
     #         for _ in range(THREAD_POOL_SIZE)
     #     ]
     
-    for abc in abc: 
-        work_queue.put(abc)
+    for n in range(0,10000): 
+        work_queue.put(n)
         threads = [
             Thread(target=worker, args = (work_queue,)) for _ in range(THREAD_POOL_SIZE)
         ]
@@ -49,7 +50,7 @@ def threaded_pool(): # Taken from Mr. Power's lecture notes.
 
 
 
-lock = Lock()
-thread = Thread(target=is_prime)
-thread.start()
+# lock = Lock()
+# thread = Thread(target=is_prime)
+# thread.start()
 

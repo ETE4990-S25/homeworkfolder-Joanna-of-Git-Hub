@@ -1,4 +1,5 @@
 from threading import Thread, Lock
+from queue import Queue, Empty
 import time
 
 def is_prime(n):

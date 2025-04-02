@@ -26,13 +26,6 @@ def worker(work_queue): # Taken from Mr. Power's lecture notes.
 
 def threaded_pool(): # Taken from Mr. Power's lecture notes.           
     work_queue = Queue()
-
-    # for base in bases:
-    #     work_queue.put(base)
-    #     threads = [
-    #         Thread(target=worker, args=(work_queue,)) 
-    #         for _ in range(THREAD_POOL_SIZE)
-    #     ]
     
     for n in range(0,10000): 
         work_queue.put(n)
@@ -49,8 +42,7 @@ def threaded_pool(): # Taken from Mr. Power's lecture notes.
         threads.pop().join
 
 
+end_time = time.time + (3*60) # sets up 3-minute working window
 
-# lock = Lock()
-# thread = Thread(target=is_prime)
-# thread.start()
-
+while time.time < end_time:
+    # abc

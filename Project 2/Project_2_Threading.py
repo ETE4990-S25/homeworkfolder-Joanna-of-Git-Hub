@@ -26,13 +26,19 @@ def worker(work_queue): # Taken from Mr. Power's lecture notes.
 def threaded_pool(): # Taken from Mr. Power's lecture notes.           
     work_queue = Queue()
 
-    for base in bases:
-        work_queue.put(base)
-        threads = [
-            Thread(target=worker, args=(work_queue,)) 
-            for _ in range(THREAD_POOL_SIZE)
-        ]
+    # for base in bases:
+    #     work_queue.put(base)
+    #     threads = [
+    #         Thread(target=worker, args=(work_queue,)) 
+    #         for _ in range(THREAD_POOL_SIZE)
+    #     ]
     
+    for abc in abc: 
+        work_queue.put(abc)
+        threads = [
+            Thread(target=worker, args = (work_queue,)) for _ in range(THREAD_POOL_SIZE)
+        ]
+
     for thread in threads:
         thread.start()
 

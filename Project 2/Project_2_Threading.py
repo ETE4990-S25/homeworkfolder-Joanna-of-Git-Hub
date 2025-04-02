@@ -34,7 +34,7 @@ def threaded_pool(): # Taken from Mr. Power's lecture notes.
     global largest_prime
     work_queue = Queue()
     
-    for n in range(0,11000000): 
+    for n in range(0,11000000): # changed the n to create the largest number the thing will (hopefully get to)
         work_queue.put(n)
         threads = [
             Thread(target=worker, args = (work_queue,)) for _ in range(THREAD_POOL_SIZE)

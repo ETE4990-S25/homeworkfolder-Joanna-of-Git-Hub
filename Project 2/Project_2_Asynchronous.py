@@ -1,7 +1,11 @@
-import time
-import asyncio
+import asyncio 
+import nest_asyncio # this will fix the iPython unable to perform Asynchronous tasks
+nest_asyncio.apply()
+# async def async_hello():
+#     print("hello, world")
+# async_hello()
 
-def is_prime(n):
+async def is_prime(n):
     if n <= 1:
         return False
     for i in range(2, int(n ** 0.5) + 1):

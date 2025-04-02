@@ -39,10 +39,11 @@ def threaded_pool(): # Taken from Mr. Power's lecture notes.
     work_queue.join()
 
     while threads:    #used to delay the time output lines
-        threads.pop().join
+        threads.pop().join()
 
 
 end_time = time.time + (3*60) # sets up 3-minute working window
 
-while time.time < end_time:
+while time.time() < end_time:
     threaded_pool()
+

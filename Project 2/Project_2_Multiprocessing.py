@@ -10,6 +10,7 @@ def is_prime(n):
     return True
 
 
+#The code runs, but it overwhelms the processor with all the processes it creates
 if __name__ == "__main__":
     processes = []
     NUM_OF_PROCESSES = 10
@@ -41,4 +42,3 @@ if __name__ == "__main__":
 
     print(f"Largest Prime: {largest_prime.value}")
 
-    #The code runs, but it overwhelms the processor with all the processes it creates

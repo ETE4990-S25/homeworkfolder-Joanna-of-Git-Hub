@@ -9,3 +9,7 @@ def is_prime(n):
             return False
     return True
 
+lock = Lock()
+thread = Thread(target=is_prime)
+thread.start()
+

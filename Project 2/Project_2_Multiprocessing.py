@@ -1,4 +1,4 @@
-from multiprocessing import Process, Pipe, Lock, Value, Manager
+from multiprocessing import Process, Pipe, Lock, Value, Manager, Queue
 import time
 
 def is_prime(n):
@@ -17,7 +17,8 @@ if __name__ == "__main__":
     num_to_factor = 10000000 #very large number to (hopefully get to by the end of 3 minutes)
     range_per_process = num_to_factor // NUM_OF_PROCESSES
 
-    parent_conns, child_conns = zip(*[Pipe() for _ in range(NUM_OF_PROCESSES)])
+    # parent_conns, child_conns = zip(*[Pipe() for _ in range(NUM_OF_PROCESSES)])
+    result_queue = Queue()
 
     #locking mechanism taken from ChatGPT
     largest_prime = Value('i', 0)  
@@ -28,17 +29,29 @@ if __name__ == "__main__":
 
     i = 0
 
-    while time.time() < end_time:
+    while time.time() < end_time and i < NUM_OF_PROCESSES:
         print(i)
-        p = Process(target=is_prime, args=(i * range_per_process + 1, (i + 1) * range_per_process + 1, child_conns[i]))
+        p = Process(target=is_prime, args=(i * range_per_process + 1, (i + 1) * range_per_process + 1))
         processes.append(p)        
         p.start()
-
         
         i = i + 1
 
     for p in processes: 
         p.join()
+
+    # structure taken from ChatGPT
+    while not result_queue.empty():
+        largest_found = 0
+        for n in range(0, num_to_factor):
+            if is_prime(n):
+                largest_found = max(largest_found, n)
+        result_queue.put(largest_found)
+        
+        found_prime = result_queue.get()
+        with lock:
+            if found_prime > largest_prime.value:
+                largest_prime.value = found_prime
 
     print(f"Largest Prime: {largest_prime.value}")
 

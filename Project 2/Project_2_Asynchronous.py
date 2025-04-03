@@ -25,6 +25,7 @@ async def main():
         print(f"Largest prime: {largest_prime}") 
 
 asy_start = time.time()
-asy_end = asy_start + (3*60) # ending time for the function
+asy_time_range = float(60 * 3)
+asy_end = asy_start + asy_time_range # ending time for the function
 
 asyncio.run(main())

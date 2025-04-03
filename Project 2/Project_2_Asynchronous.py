@@ -1,11 +1,7 @@
+import time
 import asyncio 
-import nest_asyncio # this will fix the iPython unable to perform Asynchronous tasks
+import nest_asyncio # from Mr. Power's notes: this will fix the iPython unable to perform Asynchronous tasks
 nest_asyncio.apply()
-# async def async_hello():
-#     print("hello, world")
-# async_hello()
-
-r = range(13500000)
 
 async def is_prime(n):
     if n <= 1:
@@ -16,9 +12,12 @@ async def is_prime(n):
     return True
 
 # taken from Mr. Power's notes
+r = range(13500000)
+
 async def main():
     await asyncio.gather(*(is_prime(num) for num in r)) 
 
 asy_start = time.time()
+asy_end = asy_start + (3*60) # ending time for the function
+
 asyncio.run(main())
-asy_total = time.time() - asy_start

@@ -22,7 +22,7 @@ async def main():
         if num > largest_prime:
             largest_prime = num
     else: 
-        print(f"Largest prime: {r}") 
+        print(f"Largest prime: {largest_prime}") 
 
 asy_start = time.time()
 asy_end = asy_start + (3*60) # ending time for the function

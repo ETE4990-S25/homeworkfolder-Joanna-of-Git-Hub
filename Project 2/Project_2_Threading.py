@@ -49,7 +49,8 @@ def threaded_pool(): # Taken from Mr. Power's lecture notes.
         threads.pop().join()
 
 
-end_time = time.time + (3*60) # sets up 3-minute working window
+now = time.time() 
+end_time = now + (3*60) # sets up 3-minute working window
 
 while time.time() < end_time:
     threaded_pool()

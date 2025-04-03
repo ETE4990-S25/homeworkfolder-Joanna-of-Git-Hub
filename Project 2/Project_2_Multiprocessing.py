@@ -23,7 +23,7 @@ if __name__ == "__main__":
     #locking mechanism taken from ChatGPT
     largest_prime = Value('i', 0)  
     lock = Lock()  
- 
+
     end_time = time.time() + (3*60) # setting the end time to 3 minutes after starting
     print(f"End Time: {end_time}")
 

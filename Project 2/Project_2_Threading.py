@@ -50,7 +50,7 @@ def threaded_pool(): # Taken from Mr. Power's lecture notes.
 
 
 now = time.time() 
-end_time = now + (3*60) # sets up 3-minute working window
+end_time = now + float(3*60) # sets up 3-minute working window
 
 while time.time() < end_time:
     threaded_pool()

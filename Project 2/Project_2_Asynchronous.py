@@ -13,9 +13,16 @@ async def is_prime(n):
 
 # taken from Mr. Power's notes
 r = range(13500000)
+num = 0
+largest_prime = 0
 
 async def main():
-    await asyncio.gather(*(is_prime(num) for num in r)) 
+    if time.time() < asy_end: 
+        await asyncio.gather(*(is_prime(num) for num in r))
+        if num > largest_prime:
+            largest_prime = num
+    else: 
+        print(f"Largest prime: {r}") 
 
 asy_start = time.time()
 asy_end = asy_start + (3*60) # ending time for the function

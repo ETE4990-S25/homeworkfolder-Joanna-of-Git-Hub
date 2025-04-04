@@ -7,21 +7,23 @@ import Project_2_Threading
 async def factorial(n):
     if n == 0:
         return 1
+    elif n == 1:
+        return 1
     else: 
         return factorial(n - 1)
 
 # taken from Mr. Power's notes
-r = range(13500000)
 num = 0
-factorial_result = Project_2_Threading.fibonnaci_number
+fibonnaci_result = Project_2_Threading.fibonnaci_number
+factorial_number = 0
 
 async def main():
     if time.time() < asy_end: 
-        await asyncio.gather(*(factorial(num) for num in r))
-        if num > factorial_result:
-            factorial_result = num
+        await asyncio.gather(*(factorial(num) for num in fibonnaci_result))
+        # if num > factorial_result:
+        #     factorial_result = num
     else: 
-        print(f"Factorial Result: {factorial_result}") 
+        print(f"Factorial Result: {factorial_number}") 
 
 asy_start = time.time()
 asy_time_range = float(60 * 3)

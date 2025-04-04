@@ -24,7 +24,7 @@ def worker(work_queue): # Taken from Mr. Power's lecture notes.
             break
         else:
             # taken lock structure from ChatGPT
-            if is_prime(item):
+            if fibonnaci(item):
                 with lock: 
                     if item > largest_prime:
                         largest_prime = item

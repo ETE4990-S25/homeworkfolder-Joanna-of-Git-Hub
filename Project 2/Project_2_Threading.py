@@ -5,7 +5,7 @@ import Project_2_Multiprocessing
 
 n = Project_2_Multiprocessing.largest_prime.value
 THREAD_POOL_SIZE = 10
-largest_prime = 0 
+fibonnaci_number = 0 
 lock = Lock()
 
 def fibonnaci(n):
@@ -16,23 +16,23 @@ def fibonnaci(n):
     else: 
         return fibonnaci(n - 1) + fibonnaci(n - 2)
 
-# def worker(work_queue): # Taken from Mr. Power's lecture notes.
-#     global largest_prime
-#     while not work_queue.empty():
-#         try:
-#             item = work_queue.get(block=False)
-#         except Empty:
-#             break
-#         else:
-#             # taken lock structure from ChatGPT
-#             if fibonnaci(item):
-#                 with lock: 
-#                     if item > largest_prime:
-#                         largest_prime = item
-#             work_queue.task_done()
+def worker(work_queue): # Taken from Mr. Power's lecture notes.
+    global fibonnaci_number
+    while not work_queue.empty():
+        try:
+            item = work_queue.get(block=False)
+        except Empty:
+            break
+        else:
+            # taken lock structure from ChatGPT
+            if fibonnaci(item):
+                with lock: 
+                    if item > fibonnaci_number:
+                        fibonnaci_number = item
+            work_queue.task_done()
 
 def threaded_pool(): # Taken from Mr. Power's lecture notes.           
-    global largest_prime
+    global fibonnaci_number
     work_queue = Queue()
     
     for i in range(0,n): # changed the n to create the largest number the thing will (hopefully get to)
@@ -57,4 +57,4 @@ end_time = now + time_range # sets up 3-minute working window
 while time.time() < end_time:
     threaded_pool()
 
-print(f"Largest prime found: {largest_prime}")
+print(f"Largest prime found: {fibonnaci_number}")

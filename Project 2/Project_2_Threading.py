@@ -57,4 +57,4 @@ end_time = now + time_range # sets up 3-minute working window
 while time.time() < end_time:
     threaded_pool()
 
-print(f"Largest prime found: {fibonnaci_number}")
+print(f"Fibonnaci number: {fibonnaci_number}")

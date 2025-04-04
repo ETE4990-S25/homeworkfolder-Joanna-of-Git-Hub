@@ -7,13 +7,13 @@ THREAD_POOL_SIZE = 10
 largest_prime = 0 
 lock = Lock()
 
-def is_prime(n):
-    if n <= 1:
-        return False
-    for i in range(2, int(n ** 0.5) + 1):
-        if n % i == 0:
-            return False
-    return True
+def fibonnaci(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else: 
+        return fibonnaci(n - 1) + fibonnaci(n - 2)
 
 def worker(work_queue): # Taken from Mr. Power's lecture notes.
     global largest_prime

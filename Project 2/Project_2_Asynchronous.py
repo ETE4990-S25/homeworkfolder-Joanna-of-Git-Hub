@@ -3,13 +3,11 @@ import asyncio
 import nest_asyncio # from Mr. Power's notes: this will fix the iPython unable to perform Asynchronous tasks
 nest_asyncio.apply()
 
-async def is_prime(n):
-    if n <= 1:
-        return False
-    for i in range(2, int(n ** 0.5) + 1):
-        if n % i == 0:
-            return False
-    return True
+async def factorial(n):
+    if n == 0:
+        return 1
+    else: 
+        return factorial(n - 1)
 
 # taken from Mr. Power's notes
 r = range(13500000)
@@ -18,7 +16,7 @@ largest_prime = 0
 
 async def main():
     if time.time() < asy_end: 
-        await asyncio.gather(*(is_prime(num) for num in r))
+        await asyncio.gather(*(factorial(num) for num in r))
         if num > largest_prime:
             largest_prime = num
     else: 

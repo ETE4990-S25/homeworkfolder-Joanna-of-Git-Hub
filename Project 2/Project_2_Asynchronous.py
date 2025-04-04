@@ -19,9 +19,10 @@ factorial_number = 0
 
 async def main():
     if time.time() < asy_end: 
-        await asyncio.gather(*(factorial(num) for num in fibonnaci_result))
+        await factorial_number = asyncio.gather(*(factorial(num) for num in fibonnaci_result))
         # if num > factorial_result:
         #     factorial_result = num
+        
     else: 
         print(f"Factorial Result: {factorial_number}") 
 

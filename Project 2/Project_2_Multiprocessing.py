@@ -13,7 +13,7 @@ def is_prime(n):
 #The code runs, but it overwhelms the processor with all the processes it creates
 if __name__ == "__main__":
     processes = []
-    NUM_OF_PROCESSES = 10
+    NUM_OF_PROCESSES = 4
     num_to_factor = 10000000 #very large number to (hopefully get to by the end of 3 minutes)
     range_per_process = num_to_factor // NUM_OF_PROCESSES
 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     lock = Lock()  
 
     end_time = time.time() + (3*60) # setting the end time to 3 minutes after starting
-    print(f"End Time: {end_time}")
+    #print(f"End Time: {end_time}")
 
     i = 0
 
@@ -37,21 +37,22 @@ if __name__ == "__main__":
         
         i = i + 1
 
-    for p in processes: 
-        p.join()
 
     # structure taken from ChatGPT
-    while not result_queue.empty():
-        largest_found = 0
-        for n in range(0, num_to_factor):
-            if is_prime(n):
-                largest_found = max(largest_found, n)
-        result_queue.put(largest_found)
-        
-        found_prime = result_queue.get()
-        with lock:
-            if found_prime > largest_prime.value:
-                largest_prime.value = found_prime
+        while not result_queue.empty():
+            largest_found = 0
+            for n in range(0, num_to_factor):
+                if is_prime(n):
+                    largest_found = max(largest_found, n)
+            result_queue.put(largest_found)
+            
+            found_prime = result_queue.get()
+            with lock:
+                if found_prime > largest_prime.value:
+                    largest_prime.value = found_prime
 
+    for p in processes: 
+        p.join()
+    
     print(f"Largest Prime: {largest_prime.value}")
 

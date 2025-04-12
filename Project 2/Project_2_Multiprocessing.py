@@ -1,28 +1,35 @@
-from multiprocessing import Process, Pipe, Lock, Value, Manager, Queue
+from multiprocessing import Process, Pipe, Lock, Value, Manager, Queue, Pool
 import time
 
-def is_prime(n):
-    if n <= 1:
-        return False
-    for i in range(2, int(n ** 0.5) + 1):
-        if n % i == 0:
+def is_prime(n, end):
+    while n != end:
+        if n <= 1:
             return False
-    return n
+        for i in range(2, int(n ** 0.5) + 1):
+            if n % i == 0:
+                return False
+        return True
 
+NUM_OF_PROCESSES = 4
+lock = Lock()
+largest_prime = Value('i',0)
+# pool = Pool(processes=largest_prime.value)
+
+# if __name__ == "__main__":
+#     num = [1,2,3,4,5,6,7,8,9,10,11,12]
+
+#     pool.map(is_prime,num)
+#     pool.close()
+#     pool.join()
 
 #The code runs, but it overwhelms the processor with all the processes it creates
 if __name__ == "__main__":
-    #processes = []
-    NUM_OF_PROCESSES = 4
-    #num_to_factor = 10000000 #very large number to (hopefully get to by the end of 3 minutes)
-    #range_per_process = num_to_factor // NUM_OF_PROCESSES
+    processes = []
+    processes.append(
+        Process(target=is_prime, args=(largest_prime,))
+    )
 
-    # parent_conns, child_conns = zip(*[Pipe() for _ in range(NUM_OF_PROCESSES)])
-    #result_queue = Queue()
-
-    #locking mechanism taken from ChatGPT
-    largest_prime = Value('i', 0)  
-    lock = Lock()  
+ 
 
     end_time = time.time() + 10 #(3*60) # setting the end time to 3 minutes after starting
     #print(f"End Time: {end_time}")
@@ -32,29 +39,16 @@ if __name__ == "__main__":
     while time.time() < end_time and i < NUM_OF_PROCESSES:
         print(i)
         #p = Process(target=is_prime, args=(i * range_per_process + 1, (i + 1) * range_per_process + 1))
-        p = [Process(target=is_prime, args=(largest_prime,)) for i in range(0,10)]
+        p = [Process(target=is_prime, args=()) for i in range(NUM_OF_PROCESSES)]
         #processes.append(p)        
         for processes in p:
             processes.start()
-        
-        i = i + 1
+        for processes in p: 
+            processes.join()
+        #i = i + 1
 
 
-    # # structure taken from ChatGPT
-    #     while not result_queue.empty():
-    #         largest_found = 0
-    #         for n in range(0, num_to_factor):
-    #             if is_prime(n):
-    #                 largest_found = max(largest_found, n)
-    #         result_queue.put(largest_found)
-            
-    #         found_prime = result_queue.get()
-    #         with lock:
-    #             if found_prime > largest_prime.value:
-    #                 largest_prime.value = found_prime
-
-    for processes in p: 
-        processes.join()
+    
     
     print(f"Largest Prime: {largest_prime.value}")
 

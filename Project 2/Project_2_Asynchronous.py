@@ -26,8 +26,4 @@ async def main():
     else: 
         print(f"Factorial Result: {factorial_number}") 
 
-asy_start = time.time()
-asy_time_range = float(60 * 3)
-asy_end = asy_start + asy_time_range # ending time for the function
-
 asyncio.run(main())

@@ -7,6 +7,7 @@ n = Project_2_Multiprocessing.largest_prime.value
 THREAD_POOL_SIZE = 10
 fibonnaci_number = 0 
 lock = Lock()
+threads = []
 
 def fibonnaci(n):
     if n == 0:
@@ -50,11 +51,7 @@ def threaded_pool(): # Taken from Mr. Power's lecture notes.
         threads.pop().join()
 
 
-now = time.time()
-time_range = float(60 * 3) 
-end_time = now + time_range # sets up 3-minute working window
 
-while time.time() < end_time:
-    threaded_pool()
+threaded_pool()
 
 print(f"Fibonnaci number: {fibonnaci_number}")

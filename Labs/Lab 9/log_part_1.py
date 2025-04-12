@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.DEBUG, format='%(levelname)s: %(message)s')
 parent1 = logging.getLogger("logger_parent1")
 parent1.setLevel(logging.INFO)
 
-parent1.addHandler(
+p_handler = parent1.addHandler(
     logging.handlers.TimedRotatingFileHandler(
         filename = "parent1_archived_log.log",
         when = "D",
@@ -22,7 +22,7 @@ child1 = logging.getLogger("logger_parent1.child1")
 child1.setLevel(logging.CRITICAL)
 child1.setLevel(logging.INFO)
 
-child1.addHandler(
+c_handler = child1.addHandler(
     logging.handlers.TimedRotatingFileHandler(
         filename = "child1_archived_log.log",
         when = "D",
@@ -30,11 +30,14 @@ child1.addHandler(
     )
 )
 
+# initializing formatters and handlers
 formatting = logging.Formatter(
     fmt = ("%(asctime)s | %(levelname)s"
            "%(message)s"
     )
 )
+
+
 
 # freezegun function
 def main():
@@ -52,3 +55,5 @@ def main():
 # parent1.warning("computer overheating")
 # parent1.info("You have turned on the computer")
 
+if __name__ == "__main__":
+    main()

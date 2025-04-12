@@ -54,3 +54,50 @@ def threaded_pool(): # Taken from Mr. Power's lecture notes.
 threaded_pool()
 
 print(f"Fibonnaci number: {fibonnaci_number}")
+
+# ### Project_2_Threading.py ###
+# target_num = largest_prime.value
+# lock = Lock()
+# THREAD_POOL_SIZE = 10
+# fibonnaci_number = Value('i',0)
+
+# def fibonnaci(a):
+#     with lock: 
+#         if a == 0:
+#             return 0
+#         elif a == 1:
+#             return 1
+#         else: 
+#             return fibonnaci(a - 1) + fibonnaci(a - 2)
+
+# def worker(work_queue): # Taken from Mr. Power's lecture notes.
+#     while not work_queue.empty():
+#         try:
+#             item = work_queue.get(block=False)
+#         except Empty:
+#             break
+#         else:
+#             fibonnaci(target_num)
+#             work_queue.task_done()
+
+# def threaded_pool(): # Taken from Mr. Power's lecture notes.           
+#     work_queue = Queue()
+    
+#     for i in range(0, target_num + 1): 
+#         work_queue.put(i)
+#         threads = [
+#             Thread(target=worker, args = (work_queue,)) for _ in range(THREAD_POOL_SIZE)
+#         ]
+
+#     for thread in threads:
+#         thread.start()
+
+#     work_queue.join()
+
+#     while threads:    #used to delay the time output lines
+#         threads.pop().join()
+
+# if time.time >= end_time:
+#     threaded_pool()
+
+# print(f"Fibonnaci number: {fibonnaci_number}")

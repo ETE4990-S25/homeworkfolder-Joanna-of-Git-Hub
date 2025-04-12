@@ -9,13 +9,11 @@ logging.basicConfig(level=logging.DEBUG, format='%(levelname)s: %(message)s')
 parent1 = logging.getLogger("logger_parent1")
 parent1.setLevel(logging.INFO)
 
-p_handler = parent1.addHandler(
-    logging.handlers.TimedRotatingFileHandler(
+p_handler = logging.handlers.TimedRotatingFileHandler(
         filename = "parent1_archived_log.log",
         when = "D",
         backupCount = 3,
     )
-)
 
 # configuration for child1
 child1 = logging.getLogger("logger_parent1.child1")

@@ -8,11 +8,6 @@ import freezegun
 logging.basicConfig(level=logging.DEBUG, format='%(levelname)s: %(message)s')
 parent1 = logging.getLogger("logger_parent1")
 parent1.setLevel(logging.INFO)
-formatting = logging.Formatter(
-    fmt = ("%(asctime)s | %(levelname)s"
-           "%(message)s"
-    )
-)
 
 parent1.addHandler(
     logging.handlers.TimedRotatingFileHandler(
@@ -22,6 +17,16 @@ parent1.addHandler(
     )
 )
 
+# configuration for child1
+child1 = logging.getLogger("logger_parent1.child1")
+child1.setLevel(logging.CRITICAL)
+child1.setLevel(logging.INFO)
+
+formatting = logging.Formatter(
+    fmt = ("%(asctime)s | %(levelname)s"
+           "%(message)s"
+    )
+)
 
 # These guys print the level and error name on the terminal
 # parent1.log(logging.CRITICAL, "No more disk space")

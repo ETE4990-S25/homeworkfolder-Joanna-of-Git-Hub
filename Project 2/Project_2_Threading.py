@@ -7,7 +7,6 @@ n = Project_2_Multiprocessing.largest_prime.value
 THREAD_POOL_SIZE = 10
 fibonnaci_number = 0 
 lock = Lock()
-threads = []
 
 def fibonnaci(n):
     if n == 0:

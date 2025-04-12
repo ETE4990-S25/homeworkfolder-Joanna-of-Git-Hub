@@ -37,7 +37,8 @@ formatting = logging.Formatter(
     )
 )
 
-
+p_handler.setFormatter(formatting)
+c_handler.setFormatter(formatting)
 
 # freezegun function
 def main():

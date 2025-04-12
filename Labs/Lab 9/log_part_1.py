@@ -22,11 +22,27 @@ child1 = logging.getLogger("logger_parent1.child1")
 child1.setLevel(logging.CRITICAL)
 child1.setLevel(logging.INFO)
 
+child1.addHandler(
+    logging.handlers.TimedRotatingFileHandler(
+        filename = "child1_archived_log.log",
+        when = "D",
+        backupCount = 3,
+    )
+)
+
 formatting = logging.Formatter(
     fmt = ("%(asctime)s | %(levelname)s"
            "%(message)s"
     )
 )
+
+# freezegun function
+def main():
+    with freezegun.freeze_time() as frozen:
+        for i in range(10):
+            frozen.tick(timedelta(hours = 24))
+            time.sleep(0.1)
+            parent1.info(f"INFO EXAMPLE")
 
 # These guys print the level and error name on the terminal
 # parent1.log(logging.CRITICAL, "No more disk space")

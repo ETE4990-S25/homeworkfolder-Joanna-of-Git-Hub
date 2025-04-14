@@ -20,13 +20,11 @@ child1 = logging.getLogger("logger_parent1.child1")
 child1.setLevel(logging.CRITICAL)
 child1.setLevel(logging.INFO)
 
-c_handler = child1.addHandler(
-    logging.handlers.TimedRotatingFileHandler(
+c_handler = logging.handlers.TimedRotatingFileHandler(
         filename = "child1_archived_log.log",
         when = "D",
         backupCount = 3,
     )
-)
 
 # initializing formatters and handlers
 formatting = logging.Formatter(
@@ -37,6 +35,8 @@ formatting = logging.Formatter(
 
 p_handler.setFormatter(formatting)
 c_handler.setFormatter(formatting)
+parent1.addHandler(p_handler)
+child1.addHandler(c_handler)
 
 # freezegun function
 def main():

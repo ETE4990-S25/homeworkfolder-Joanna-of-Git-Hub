@@ -28,8 +28,8 @@ c_handler = logging.handlers.TimedRotatingFileHandler(
 
 # initializing formatters and handlers
 formatting = logging.Formatter(
-    fmt = ("%(asctime)s | %(levelname)s"
-           "%(message)s"
+    fmt = ("%(asctime)s | %(levelname)s |"
+           " %(message)s"
     )
 )
 
@@ -44,15 +44,15 @@ def main():
         for i in range(10):
             frozen.tick(timedelta(hours = 24))
             time.sleep(0.1)
-            parent1.info(f"INFO EXAMPLE")
+            parent1.info(f"INFO EXAMPLE") # the only info that shows up as is in the logs
 
-# These guys print the level and error name on the terminal
-# parent1.log(logging.CRITICAL, "No more disk space")
+            # These guys print the level and error name on the terminal
+            parent1.log(logging.CRITICAL, "No more disk space")
 
-# parent1.critical("Computer Angry")
-# parent1.error("file not found in directory")
-# parent1.warning("computer overheating")
-# parent1.info("You have turned on the computer")
+            child1.critical("Computer Angry")
+            child1.error("file not found in directory")
+            parent1.warning("computer overheating")
+            parent1.info("You have turned on the computer")
 
 if __name__ == "__main__":
     main()

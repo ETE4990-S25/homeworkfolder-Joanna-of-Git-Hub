@@ -1,0 +1,33 @@
+{"error_type": {
+    "critical": "CRITICAL", 
+    "warning": "WARNING",
+    "error":"ERROR",
+    "info": "INFO"
+    }, 
+
+"critical":{
+    "1": "Imminent Shut Down",
+    "2": "Memory Overload",
+    "3": "No disk space",
+    "4": "Computer on fire"
+    }, 
+"warning": {
+    "1": "Computer overheating",
+    "2": "Low disk space", 
+    "3": "Computer fell over",
+    "4": "Low battery"
+    },
+"error":{
+    "1": "No connection",
+    "2": "File not found", 
+    "3": "link to other page is dead",
+    "4": "Low battery"
+    },
+"info":{
+    "1": "User logged in",
+    "2": "Application starting", 
+    "3": "User logged out",
+    "4": "New file created"
+    }    
+
+}

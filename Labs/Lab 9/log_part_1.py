@@ -40,6 +40,7 @@ utils_handler = logging.handlers.TimedRotatingFileHandler(
 # configuration for frontend
 frontend = logging.getLogger("logger_application.ui.utils.frontend")
 frontend.setLevel(logging.CRITICAL)
+frontend.setLevel(logging.WARNING)
 frontend.setLevel(logging.INFO)
 
 frontend_handler = logging.handlers.TimedRotatingFileHandler(
@@ -51,6 +52,7 @@ frontend_handler = logging.handlers.TimedRotatingFileHandler(
 # configuration for backend
 backend = logging.getLogger("logger_application.ui.utils.backend")
 backend.setLevel(logging.CRITICAL)
+backend.setLevel(logging.WARNING)
 backend.setLevel(logging.INFO)
 
 backend_handler = logging.handlers.TimedRotatingFileHandler(

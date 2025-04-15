@@ -4,39 +4,80 @@ from datetime import timedelta, datetime
 import time
 import freezegun
 
-# configurations for parent1
+# configurations for application
 logging.basicConfig(level=logging.DEBUG, format='%(levelname)s: %(message)s')
-parent1 = logging.getLogger("logger_parent1")
-parent1.setLevel(logging.INFO)
+application = logging.getLogger("logger_application")
+application.setLevel(logging.INFO)
 
-p_handler = logging.handlers.TimedRotatingFileHandler(
-        filename = "parent1_archived_log.log",
+a_handler = logging.handlers.TimedRotatingFileHandler(
+        filename = "application_archived_log.log",
         when = "D",
         backupCount = 3,
     )
 
-# configuration for child1
-child1 = logging.getLogger("logger_parent1.child1")
-child1.setLevel(logging.CRITICAL)
-child1.setLevel(logging.INFO)
+# configuration for ui
+ui = logging.getLogger("logger_application.ui")
+ui.setLevel(logging.CRITICAL)
+ui.setLevel(logging.INFO)
 
-c_handler = logging.handlers.TimedRotatingFileHandler(
-        filename = "child1_archived_log.log",
+ui_handler = logging.handlers.TimedRotatingFileHandler(
+        filename = "ui_archived_log.log",
         when = "D",
         backupCount = 3,
     )
 
-# initializing formatters and handlers
+# configuration for utils
+utils = logging.getLogger("logger_application.ui.utils")
+utils.setLevel(logging.CRITICAL)
+utils.setLevel(logging.INFO)
+
+utils_handler = logging.handlers.TimedRotatingFileHandler(
+        filename = "utils_archived_log.log",
+        when = "D",
+        backupCount = 3,
+    )
+
+# configuration for frontend
+frontend = logging.getLogger("logger_application.ui.utils.frontend")
+frontend.setLevel(logging.CRITICAL)
+frontend.setLevel(logging.INFO)
+
+frontend_handler = logging.handlers.TimedRotatingFileHandler(
+        filename = "frontend_archived_log.log",
+        when = "D",
+        backupCount = 3,
+    )
+
+# configuration for backend
+backend = logging.getLogger("logger_application.ui.utils.backend")
+backend.setLevel(logging.CRITICAL)
+backend.setLevel(logging.INFO)
+
+backend_handler = logging.handlers.TimedRotatingFileHandler(
+        filename = "backend_archived_log.log",
+        when = "D",
+        backupCount = 3,
+    )
+
+# initializing formatter
 formatting = logging.Formatter(
     fmt = ("%(asctime)s | %(levelname)s |"
            " %(message)s"
     )
 )
 
-p_handler.setFormatter(formatting)
-c_handler.setFormatter(formatting)
-parent1.addHandler(p_handler)
-child1.addHandler(c_handler)
+#adding handlers
+a_handler.setFormatter(formatting)
+ui_handler.setFormatter(formatting)
+utils_handler.setFormatter(formatting)
+frontend_handler.setFormatter(formatting)
+backend_handler.setFormatter(formatting)
+application.addHandler(a_handler)
+ui.addHandler(ui_handler)
+utils.addHandler(utils_handler)
+frontend.addHandler(frontend_handler)
+backend.addHandler(backend_handler)
+
 
 # freezegun function
 def main():
@@ -44,15 +85,15 @@ def main():
         for i in range(10):
             frozen.tick(timedelta(hours = 24))
             time.sleep(0.1)
-            parent1.info(f"INFO EXAMPLE") # the only info that shows up as is in the logs
+            application.info(f"INFO EXAMPLE") # the only info that shows up as is in the logs
 
             # These guys print the level and error name on the terminal
-            parent1.log(logging.CRITICAL, "No more disk space")
+            application.log(logging.CRITICAL, "No more disk space")
 
-            child1.critical("Computer Angry")
-            child1.error("file not found in directory")
-            parent1.warning("computer overheating")
-            parent1.info("You have turned on the computer")
+            ui.critical("Computer Angry")
+            ui.error("file not found in directory")
+            application.warning("computer overheating")
+            application.info("You have turned on the computer")
 
 if __name__ == "__main__":
     main()

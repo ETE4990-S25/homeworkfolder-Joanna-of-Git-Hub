@@ -87,7 +87,7 @@ def error_log():
         file = json.load(f)
     errors_dict = json.dumps(file, indent=2)
 
-    levels = [application, ui, utils, frontend, backend]
+    abc = 1
 
 # freezegun function
 def main():

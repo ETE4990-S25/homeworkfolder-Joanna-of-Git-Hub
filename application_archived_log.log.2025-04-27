@@ -1,0 +1,6 @@
+2025-04-27 22:15:54,946 | INFO | INFO EXAMPLE
+2025-04-27 22:15:54,946 | CRITICAL | No more disk space
+2025-04-27 22:15:54,946 | CRITICAL | Computer Angry
+2025-04-27 22:15:54,946 | ERROR | file not found in directory
+2025-04-27 22:15:54,946 | WARNING | computer overheating
+2025-04-27 22:15:54,946 | INFO | You have turned on the computer

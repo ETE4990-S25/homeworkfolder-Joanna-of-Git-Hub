@@ -82,12 +82,12 @@ frontend.addHandler(frontend_handler)
 backend.addHandler(backend_handler)
 
 #trying to use JSON to read/generate error messages
-def error_log():
-    with open("error_dictionary.json") as f:
-        file = json.load(f)
-    errors_dict = json.dumps(file, indent=2)
+# def error_log():
+#     with open("error_dictionary.json") as f:
+#         file = json.load(f)
+#     errors_dict = json.dumps(file, indent=2)
 
-    abc = 1
+#     abc = 1
 
 # freezegun function
 def main():
@@ -98,15 +98,15 @@ def main():
             application.info(f"INFO EXAMPLE") # the only info that shows up as is in the logs
 
             # These guys print the level and error name on the terminal
-            # application.log(logging.CRITICAL, "No more disk space")
+            application.log(logging.CRITICAL, "No more disk space")
 
-            # ui.critical("Computer Angry")
-            # ui.error("file not found in directory")
-            # application.warning("computer overheating")
-            # application.info("You have turned on the computer")
+            ui.critical("Computer Angry")
+            ui.error("file not found in directory")
+            application.warning("computer overheating")
+            application.info("You have turned on the computer")
 
             
-            error_log()
+            # error_log()
 
 
 

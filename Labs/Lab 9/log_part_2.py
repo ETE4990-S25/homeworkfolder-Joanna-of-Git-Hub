@@ -55,8 +55,6 @@ def find_duplicates(directory):
 
     return found_duplicates
 
-
-
 def get_checksum(file_path):
     hash_obj = hashlib.md5()  # Change to hashlib.sha256() if desired
     with open(file_path, 'rb') as f:

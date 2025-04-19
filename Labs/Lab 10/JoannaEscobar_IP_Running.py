@@ -35,4 +35,4 @@ def relaunch():
     all_containers = server.containers.list(all=True)
     for container in all_containers:
         if container.status == "exited":
-            container.reload()
+            container.restart()

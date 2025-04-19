@@ -5,14 +5,13 @@ server = docker.from_env()
 
 #check the IP address
 def check_ip_status(name):
-    
     specific_container = server.containers.get(name)
-    # I couldn't figure out another way to show the IP address, so I used
-    # Mr. Power's code
+    # I couldn't figure out another way to show the IP address, so I used Mr. Power's code
     networks = specific_container.attrs['NetworkSettings']['Networks']
     
     for net_name, net_data in networks.items():
         print(f"{name} in network '{net_name}' has IP: {net_data['IPAddress']}")
+
 
 # Mr. Powers's Code, just condensed
 # client = docker.from_env()
@@ -30,3 +29,10 @@ def check_ip_status(name):
     
 #     for net_name, net_data in networks.items():
 #         print(f"{container_name} in network '{net_name}' has IP: {net_data['IPAddress']}")
+
+def relaunch():
+    """Relaunches a container if it ever shuts down."""
+    all_containers = server.containers.list(all=True)
+    for container in all_containers:
+        if container.status == "exited":
+            container.reload()

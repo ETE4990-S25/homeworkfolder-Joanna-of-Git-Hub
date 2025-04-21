@@ -4,11 +4,15 @@ from datetime import timedelta, datetime
 import time
 import freezegun
 import json
+import random
 
 # configurations for application
 logging.basicConfig(level=logging.DEBUG, format='%(levelname)s: %(message)s')
 application = logging.getLogger("logger_application")
 application.setLevel(logging.INFO)
+application.setLevel(logging.WARNING)
+application.setLevel(logging.ERROR)
+application.setLevel(logging.CRITICAL)
 
 a_handler = logging.handlers.TimedRotatingFileHandler(
         filename = "application_archived_log.log",
@@ -20,6 +24,8 @@ a_handler = logging.handlers.TimedRotatingFileHandler(
 ui = logging.getLogger("logger_application.ui")
 ui.setLevel(logging.CRITICAL)
 ui.setLevel(logging.INFO)
+ui.setLevel(logging.WARNING)
+ui.setLevel(logging.ERROR)
 
 ui_handler = logging.handlers.TimedRotatingFileHandler(
         filename = "ui_archived_log.log",
@@ -31,6 +37,8 @@ ui_handler = logging.handlers.TimedRotatingFileHandler(
 utils = logging.getLogger("logger_application.ui.utils")
 utils.setLevel(logging.CRITICAL)
 utils.setLevel(logging.INFO)
+utils.setLevel(logging.WARNING)
+utils.setLevel(logging.ERROR)
 
 utils_handler = logging.handlers.TimedRotatingFileHandler(
         filename = "utils_archived_log.log",
@@ -42,6 +50,7 @@ utils_handler = logging.handlers.TimedRotatingFileHandler(
 frontend = logging.getLogger("logger_application.ui.utils.frontend")
 frontend.setLevel(logging.CRITICAL)
 frontend.setLevel(logging.WARNING)
+frontend.setLevel(logging.ERROR)
 frontend.setLevel(logging.INFO)
 
 frontend_handler = logging.handlers.TimedRotatingFileHandler(
@@ -54,6 +63,7 @@ frontend_handler = logging.handlers.TimedRotatingFileHandler(
 backend = logging.getLogger("logger_application.ui.utils.backend")
 backend.setLevel(logging.CRITICAL)
 backend.setLevel(logging.WARNING)
+backend.setLevel(logging.ERROR)
 backend.setLevel(logging.INFO)
 
 backend_handler = logging.handlers.TimedRotatingFileHandler(
@@ -82,12 +92,15 @@ frontend.addHandler(frontend_handler)
 backend.addHandler(backend_handler)
 
 #trying to use JSON to read/generate error messages
-# def error_log():
-#     with open("error_dictionary.json") as f:
-#         file = json.load(f)
-#     errors_dict = json.dumps(file, indent=2)
+def error_log_json(level):
+    with open("error_dictionary.json") as f:
+        file = json.load(f)
 
-#     abc = 1
+    x = str(random.randint(1,4))
+
+    for key, value in file[level].items():
+        # if key == x:
+        return file[level][key]
 
 # freezegun function
 def main():
@@ -95,18 +108,16 @@ def main():
         for i in range(10):
             frozen.tick(timedelta(hours = 24))
             time.sleep(0.1)
-            application.info(f"INFO EXAMPLE") # the only info that shows up as is in the logs
 
-            # These guys print the level and error name on the terminal
-            application.log(logging.CRITICAL, "No more disk space")
-
-            ui.critical("Computer Angry")
-            ui.error("file not found in directory")
-            application.warning("computer overheating")
-            application.info("You have turned on the computer")
+            # These guys print the level and error name
+            application.info(error_log_json("info"))
+            ui.critical(error_log_json("critical"))
+            utils.error(error_log_json("error"))
+            frontend.warning(error_log_json("warning"))
+            backend.critical(error_log_json("critical"))
 
             
-            # error_log()
+            
 
 
 

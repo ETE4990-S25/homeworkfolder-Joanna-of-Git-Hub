@@ -1,11 +1,4 @@
-{"error_type": {
-    "critical": "CRITICAL", 
-    "warning": "WARNING",
-    "error":"ERROR",
-    "info": "INFO"
-    }, 
-
-"critical":{
+{"critical":{
     "1": "Imminent Shut Down",
     "2": "Memory Overload",
     "3": "No disk space",

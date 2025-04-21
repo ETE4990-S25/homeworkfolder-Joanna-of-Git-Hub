@@ -74,8 +74,8 @@ backend_handler = logging.handlers.TimedRotatingFileHandler(
 
 # initializing formatter
 formatting = logging.Formatter(
-    fmt = ("%(asctime)s | %(levelname)s |"
-           " %(message)s"
+    fmt = ("%(asctime)s | %(name)s | " 
+           "%(levelname)s | %(message)s"
     )
 )
 

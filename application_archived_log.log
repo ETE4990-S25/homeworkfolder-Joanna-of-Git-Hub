@@ -1,0 +1,16 @@
+2025-04-27 22:58:08,831 | logger_application.ui | CRITICAL | Imminent Shut Down
+2025-04-27 22:58:08,831 | logger_application.ui.utils | ERROR | No connection
+2025-04-27 22:58:08,831 | logger_application.ui.utils.frontend | WARNING | Computer overheating
+2025-04-27 22:58:08,831 | logger_application.ui.utils.backend | CRITICAL | Imminent Shut Down
+2025-04-28 22:58:08,831 | logger_application.ui | CRITICAL | Imminent Shut Down
+2025-04-28 22:58:08,831 | logger_application.ui.utils | ERROR | No connection
+2025-04-28 22:58:08,831 | logger_application.ui.utils.frontend | WARNING | Computer overheating
+2025-04-28 22:58:08,831 | logger_application.ui.utils.backend | CRITICAL | Imminent Shut Down
+2025-04-29 22:58:08,831 | logger_application.ui | CRITICAL | Imminent Shut Down
+2025-04-29 22:58:08,831 | logger_application.ui.utils | ERROR | No connection
+2025-04-29 22:58:08,831 | logger_application.ui.utils.frontend | WARNING | Computer overheating
+2025-04-29 22:58:08,831 | logger_application.ui.utils.backend | CRITICAL | Imminent Shut Down
+2025-04-30 22:58:08,831 | logger_application.ui | CRITICAL | Imminent Shut Down
+2025-04-30 22:58:08,831 | logger_application.ui.utils | ERROR | No connection
+2025-04-30 22:58:08,831 | logger_application.ui.utils.frontend | WARNING | Computer overheating
+2025-04-30 22:58:08,831 | logger_application.ui.utils.backend | CRITICAL | Imminent Shut Down

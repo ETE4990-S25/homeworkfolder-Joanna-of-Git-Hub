@@ -1,0 +1,4 @@
+2025-04-27 22:57:52,707 | logger_application.uiCRITICAL | Imminent Shut Down
+2025-04-27 22:57:52,707 | logger_application.ui.utilsERROR | No connection
+2025-04-27 22:57:52,707 | logger_application.ui.utils.frontendWARNING | Computer overheating
+2025-04-27 22:57:52,707 | logger_application.ui.utils.backendCRITICAL | Imminent Shut Down

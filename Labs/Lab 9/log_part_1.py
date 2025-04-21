@@ -99,8 +99,8 @@ def error_log_json(level):
     x = str(random.randint(1,4))
 
     for key, value in file[level].items():
-        # if key == x:
-        return file[level][key]
+        if key == x:
+            return file[level][x]
 
 # freezegun function
 def main():
@@ -115,10 +115,6 @@ def main():
             utils.error(error_log_json("error"))
             frontend.warning(error_log_json("warning"))
             backend.critical(error_log_json("critical"))
-
-            
-            
-
 
 
 if __name__ == "__main__":

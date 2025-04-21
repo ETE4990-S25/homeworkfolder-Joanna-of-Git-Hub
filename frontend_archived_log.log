@@ -1,4 +1,4 @@
-2025-04-27 22:58:08,831 | logger_application.ui.utils.frontend | WARNING | Computer overheating
-2025-04-28 22:58:08,831 | logger_application.ui.utils.frontend | WARNING | Computer overheating
-2025-04-29 22:58:08,831 | logger_application.ui.utils.frontend | WARNING | Computer overheating
-2025-04-30 22:58:08,831 | logger_application.ui.utils.frontend | WARNING | Computer overheating
+2025-04-27 23:07:59,964 | logger_application.ui.utils.frontend | WARNING | Low disk space
+2025-04-28 23:07:59,964 | logger_application.ui.utils.frontend | WARNING | Low disk space
+2025-04-29 23:07:59,964 | logger_application.ui.utils.frontend | WARNING | Computer fell over
+2025-04-30 23:07:59,964 | logger_application.ui.utils.frontend | WARNING | Computer overheating

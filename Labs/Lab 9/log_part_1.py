@@ -93,10 +93,10 @@ backend.addHandler(backend_handler)
 
 #trying to use JSON to read/generate error messages
 def error_log_json(level):
-    with open("error_dictionary.json") as f:
+    with open("Labs\Lab 9\error_dictionary.json") as f:
         file = json.load(f)
 
-    x = str(random.randint(1,4))
+    x = str(random.randint(1,4)) # the num of subkeys in the dict. If you add more options, just update.
 
     for key, value in file[level].items():
         if key == x:

@@ -9,3 +9,6 @@ def read_log_line(log_filepath):
 def parse_log_line(line):
     pattern = r"^(.*?)\s\|\s(\w+)\s\|\s(\w+)\s\|\s(.*)$"
     match = re.match(pattern, line)
+
+def count_log_levels(line):
+    a = 1

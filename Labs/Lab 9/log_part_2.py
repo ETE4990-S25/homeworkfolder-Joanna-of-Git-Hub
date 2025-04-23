@@ -1,4 +1,3 @@
-# Paste your python file here don't for get to upload it with your submission
 import re
 
 def read_log_line(log_filepath):
@@ -38,3 +37,7 @@ def count_log_levels(parsed):
             count_dict["WARNING"][message] = count_w + 1
         elif level == "CRITICAL":
             count_dict["CRITICAL"][message] = count_l + 1
+
+    filename = 'log_level_count.json'
+    with open(filename,'w') as f:
+        f.write(count_dict)

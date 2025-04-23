@@ -113,7 +113,7 @@ def main():
             ui.critical(error_log_json("critical"))
             utils.error(error_log_json("error"))
             frontend.warning(error_log_json("warning"))
-            backend.critical(error_log_json("critical"))
+            backend.info(error_log_json("info"))
 
 
 if __name__ == "__main__":

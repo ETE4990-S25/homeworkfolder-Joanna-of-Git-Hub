@@ -1,6 +1,8 @@
-2025-04-27 23:19:06,346 | logger_application.ui.utils.frontend | WARNING | Computer fell over
-2025-04-28 23:19:06,346 | logger_application.ui.utils.frontend | WARNING | Computer fell over
-2025-04-29 23:19:06,346 | logger_application.ui.utils.frontend | WARNING | Computer overheating
-2025-04-30 23:19:06,346 | logger_application.ui.utils.frontend | WARNING | Low battery
-2025-05-01 23:19:06,346 | logger_application.ui.utils.frontend | WARNING | Computer overheating
-2025-05-02 23:19:06,346 | logger_application.ui.utils.frontend | WARNING | Computer fell over
+2025-04-27 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Low disk space
+2025-04-28 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Low battery
+2025-04-29 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Low battery
+2025-04-30 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Computer fell over
+2025-05-01 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Computer fell over
+2025-05-02 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Computer overheating
+2025-05-03 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Computer fell over
+2025-05-04 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Computer overheating

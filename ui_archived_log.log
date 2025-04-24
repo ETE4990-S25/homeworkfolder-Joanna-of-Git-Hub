@@ -1,24 +1,32 @@
-2025-04-27 23:19:06,346 | logger_application.ui | CRITICAL | Imminent Shut Down
-2025-04-27 23:19:06,346 | logger_application.ui.utils | ERROR | Low battery
-2025-04-27 23:19:06,346 | logger_application.ui.utils.frontend | WARNING | Computer fell over
-2025-04-27 23:19:06,346 | logger_application.ui.utils.backend | INFO | User logged out
-2025-04-28 23:19:06,346 | logger_application.ui | CRITICAL | Memory Overload
-2025-04-28 23:19:06,346 | logger_application.ui.utils | ERROR | Low battery
-2025-04-28 23:19:06,346 | logger_application.ui.utils.frontend | WARNING | Computer fell over
-2025-04-28 23:19:06,346 | logger_application.ui.utils.backend | INFO | New file created
-2025-04-29 23:19:06,346 | logger_application.ui | CRITICAL | No disk space
-2025-04-29 23:19:06,346 | logger_application.ui.utils | ERROR | link to other page is dead
-2025-04-29 23:19:06,346 | logger_application.ui.utils.frontend | WARNING | Computer overheating
-2025-04-29 23:19:06,346 | logger_application.ui.utils.backend | INFO | User logged out
-2025-04-30 23:19:06,346 | logger_application.ui | CRITICAL | No disk space
-2025-04-30 23:19:06,346 | logger_application.ui.utils | ERROR | File not found
-2025-04-30 23:19:06,346 | logger_application.ui.utils.frontend | WARNING | Low battery
-2025-04-30 23:19:06,346 | logger_application.ui.utils.backend | INFO | Application starting
-2025-05-01 23:19:06,346 | logger_application.ui | CRITICAL | Computer on fire
-2025-05-01 23:19:06,346 | logger_application.ui.utils | ERROR | File not found
-2025-05-01 23:19:06,346 | logger_application.ui.utils.frontend | WARNING | Computer overheating
-2025-05-01 23:19:06,346 | logger_application.ui.utils.backend | INFO | User logged in
-2025-05-02 23:19:06,346 | logger_application.ui | CRITICAL | No disk space
-2025-05-02 23:19:06,346 | logger_application.ui.utils | ERROR | No connection
-2025-05-02 23:19:06,346 | logger_application.ui.utils.frontend | WARNING | Computer fell over
-2025-05-02 23:19:06,346 | logger_application.ui.utils.backend | INFO | New file created
+2025-04-27 16:15:00,630 | logger_application.ui | CRITICAL | Memory Overload
+2025-04-27 16:15:00,630 | logger_application.ui.utils | ERROR | link to other page is dead
+2025-04-27 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Low disk space
+2025-04-27 16:15:00,630 | logger_application.ui.utils.backend | INFO | User logged in
+2025-04-28 16:15:00,630 | logger_application.ui | CRITICAL | Computer on fire
+2025-04-28 16:15:00,630 | logger_application.ui.utils | ERROR | File not found
+2025-04-28 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Low battery
+2025-04-28 16:15:00,630 | logger_application.ui.utils.backend | INFO | Application starting
+2025-04-29 16:15:00,630 | logger_application.ui | CRITICAL | Imminent Shut Down
+2025-04-29 16:15:00,630 | logger_application.ui.utils | ERROR | link to other page is dead
+2025-04-29 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Low battery
+2025-04-29 16:15:00,630 | logger_application.ui.utils.backend | INFO | New file created
+2025-04-30 16:15:00,630 | logger_application.ui | CRITICAL | Computer on fire
+2025-04-30 16:15:00,630 | logger_application.ui.utils | ERROR | File not found
+2025-04-30 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Computer fell over
+2025-04-30 16:15:00,630 | logger_application.ui.utils.backend | INFO | User logged in
+2025-05-01 16:15:00,630 | logger_application.ui | CRITICAL | No disk space
+2025-05-01 16:15:00,630 | logger_application.ui.utils | ERROR | link to other page is dead
+2025-05-01 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Computer fell over
+2025-05-01 16:15:00,630 | logger_application.ui.utils.backend | INFO | User logged out
+2025-05-02 16:15:00,630 | logger_application.ui | CRITICAL | No disk space
+2025-05-02 16:15:00,630 | logger_application.ui.utils | ERROR | No connection
+2025-05-02 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Computer overheating
+2025-05-02 16:15:00,630 | logger_application.ui.utils.backend | INFO | User logged in
+2025-05-03 16:15:00,630 | logger_application.ui | CRITICAL | Computer on fire
+2025-05-03 16:15:00,630 | logger_application.ui.utils | ERROR | File not found
+2025-05-03 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Computer fell over
+2025-05-03 16:15:00,630 | logger_application.ui.utils.backend | INFO | User logged out
+2025-05-04 16:15:00,630 | logger_application.ui | CRITICAL | Imminent Shut Down
+2025-05-04 16:15:00,630 | logger_application.ui.utils | ERROR | Low battery
+2025-05-04 16:15:00,630 | logger_application.ui.utils.frontend | WARNING | Computer overheating
+2025-05-04 16:15:00,630 | logger_application.ui.utils.backend | INFO | Application starting

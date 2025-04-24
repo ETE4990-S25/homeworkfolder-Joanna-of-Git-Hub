@@ -1,4 +1,6 @@
+# Paste your python file here 
 import matplotlib
+import threading
 
 def jsonMonitor(file):
     with open(file, "r") as f:
@@ -50,3 +52,6 @@ def graphErrors(file):
     matplotlib.ylabel('Amount')
 
     matplotlib.show()
+
+daemon_thread = threading.Thread(target=jsonMonitor, daemon=True)
+daemon_thread.start()

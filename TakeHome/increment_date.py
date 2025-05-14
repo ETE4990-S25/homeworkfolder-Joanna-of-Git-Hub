@@ -15,6 +15,19 @@ class Date(object):
         self.month = month
         self.day = day
 
+    def return_date(self):
+        """Turning date values into a string. Adds a zero ahead of day/month number if needed."""
+        if self.day < 10 and self.month > 10:
+            date_str = f"{self.year}-{self.month}-0{self.day}"
+        elif self.day < 10 and self.month < 10:
+            date_str = f"{self.year}-0{self.month}-0{self.day}"
+        elif self.day > 10 and self.month < 10:
+            date_str = f"{self.year}-0{self.month}-{self.day}"
+        else:
+            date_str = f"{self.year}-{self.month}-{self.day}"
+        
+        return date_str
+    
     def increment_date(self):
         """A function to increment the date and returns date in yr-mos-day format as a string."""
         # incrementing dates depending on the month
@@ -38,17 +51,3 @@ class Date(object):
         
         else:
             self.day += 1
-
-        # turning date into a string. Adds a zero ahead of day/month number if needed.
-        if self.day < 10 and self.month > 10:
-            date_str = f"{self.year}-{self.month}-0{self.day}"
-        elif self.day < 10 and self.month < 10:
-            date_str = f"{self.year}-0{self.month}-0{self.day}"
-        elif self.day > 10 and self.month < 10:
-            date_str = f"{self.year}-0{self.month}-{self.day}"
-        else:
-            date_str = f"{self.year}-{self.month}-{self.day}"
-        
-        return date_str
-    
-date = Date()

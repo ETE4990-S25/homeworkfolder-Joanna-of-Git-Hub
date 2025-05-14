@@ -3,16 +3,15 @@ import xmltodict
 import json
 import random
 import threading
-import parser, increment_date # importing my own files
+import parser # importing my own files
+from increment_date import Date, today_str
 
 rates = ["EUR", "GBP", "USD", "DZD", "AUD", "BWP", "BND", "CAD", "CLP", "CNY", "COP", "CZK", "DKK", "HUF", "ISK", "INR", "IDR", "ILS", "KZT", "KRW", "KWD", "LYD", "MYR", "MUR", "NPR", "NZD", "NOK", "OMR", "PKR", "PLN", "QAR", "RUB", "SAR", "SGD", "ZAR", "LKR", "SEK", "CHF", "THB", "TTD"]
 ratesForBase = [r for r in rates if r != "USD" and r != "EUR" and r != "GBP"]
-
-# i_year = 2011
-# i_month = 5
-# i_day = 4
-
 base = random.choice(ratesForBase)
+
+date = Date() # intitalizing startind values in Date 
+date_str = date.return_date() # chaging starting values to a string
 
 def get_data(date, base):
     # URL of thetData data
@@ -30,8 +29,15 @@ def get_data(date, base):
     # Convert the dictionary to a JSON string
     return json.dumps(data_dict, indent=4)
 
-while date != today_string:
-    date = 1
+
+if date_str != today_str:
+    
+    # join the threads for threading
+    a = 1    
+else: 
+    # continue??
+
+    date.increment_date() # increments the yr/mo/day values in the class Date
 
 
 

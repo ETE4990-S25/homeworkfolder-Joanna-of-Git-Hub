@@ -3,13 +3,14 @@ import xmltodict
 import json
 import random
 import threading
-import time
+from queue import Queue, Empty
 import parser # importing my own files
-from increment_date import Date, today_str
+from increment_date import Date, today_str # importing my own files
 
 rates = ["EUR", "GBP", "USD", "DZD", "AUD", "BWP", "BND", "CAD", "CLP", "CNY", "COP", "CZK", "DKK", "HUF", "ISK", "INR", "IDR", "ILS", "KZT", "KRW", "KWD", "LYD", "MYR", "MUR", "NPR", "NZD", "NOK", "OMR", "PKR", "PLN", "QAR", "RUB", "SAR", "SGD", "ZAR", "LKR", "SEK", "CHF", "THB", "TTD"]
 ratesForBase = [r for r in rates if r != "USD" and r != "EUR" and r != "GBP"]
-base = random.choice(ratesForBase)
+base_choice = random.choice(ratesForBase)
+base = base_choice
 
 date = Date() # intitalizing starting values in Date 2011-05-04
 date_str = date.return_date() # chaging starting values to a string
@@ -19,7 +20,6 @@ exc_dict = {}
 def get_data(date, base):
     # URL of thetData data
     url = f"https://www.floatrates.com/historical-exchange-rates.html?operation=rates&pb_id=1775&page=historical&currency_date={date}&base_currency_code={base}&format_type=xml"
-    ##print(url)
     
     # Fetch the XML data
     response = requests.get(url)
@@ -31,61 +31,42 @@ def get_data(date, base):
     # Convert the dictionary to a JSON string
     json_dict =  json.dumps(data_dict, indent=4)
 
-
     # get the abbreviation of the target currency and the conversion rate
-    exc_dict[json_dict["channel"]["item"]["targetCurrency"]] = json_dict["channel"]["item"]["exchangeRate"]
+    for i in json_dict["channel"]["item"]:
+        exc_dict[json_dict["channel"]["item"][i]["targetCurrency"]] = json_dict["channel"]["item"][i]["exchangeRate"]
 
-def threaded(debug=False):
-    threads = []
-    for base in bases:
-        thread = threading.Thread(target=fetch_rate, args=(base, rates, debug, debug))
-        thread.start()
-        threads.append(thread)
 
+
+def worker(work_queue): # taken from Mr. Power's notes
+    while not work_queue.empty():
+        try:
+            item = work_queue.get(block=False)
+        except Empty:
+            break
+        else:
+            get_data(date_str,base)
+            work_queue.task_done()
+
+def threaded_pool(): # taken from Mr. Power's notes           
+    work_queue = Queue()
+
+    for base in ratesForBase:
+        work_queue.put(base)
+        threads = [
+            threading.Thread(target=worker, args=(work_queue,)) 
+            for _ in range(5)
+        ]
+    
     for thread in threads:
-        thread.join()   
+        thread.start()
+
+    work_queue.join()
+
+    while threads:    #used to delay the time output lines
+        threads.pop().join
 
 
-
-
-
-
-
-
-#thread = threading.Thread(target=get_data)
-# thread.start()
-
-# def worker(task_id):
-#     print(f"Thread-{task_id} starting")
-#     time.sleep(random.randint(1,4)) # run for a random time to illistrate threads can end at different times
-#     print(f"Thread-{task_id} finished")
-
-# Creating threads
-threads = []
-for i in range(5):
-    thread = threading.Thread(target=get_data, args=(date_str,base))
-    threads.append(thread)
-    thread.start()
-
-# #this will run
-# for i in range(5):
-#     print("Main thread continues to run...")
-#     time.sleep(1)
-
-# Joining threads tells the code to wait 
-for thread in threads:
-    thread.join()
-
-#will run after 
-print("All threads have completed.")
-
-
-
-
-
-
-
-
+threaded_pool()
 
 
 

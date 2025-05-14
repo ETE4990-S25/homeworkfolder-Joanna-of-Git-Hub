@@ -69,11 +69,7 @@ def threaded_pool(): # taken from Mr. Power's notes
 
 
 
-if date_str == today_str:
-    a = 1
-
-else: 
-    
+while date_str <= today_str:
     threaded_pool()
     date.increment_date() # increments the yr/mo/day values in the class Date
     
@@ -83,8 +79,6 @@ else:
     # Optionally, write the JSON data to a file
     with open(f"{date}_exchange_rates_{base}.json", "w") as json_file:
         json_file.write(exc_dict)
-
-    time.sleep(0.5) # trying to allow threaded pool a chance to finish
     
 
 

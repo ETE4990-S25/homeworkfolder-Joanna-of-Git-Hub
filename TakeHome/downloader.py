@@ -9,18 +9,19 @@ import parser
 rates = ["EUR", "GBP", "USD", "DZD", "AUD", "BWP", "BND", "CAD", "CLP", "CNY", "COP", "CZK", "DKK", "HUF", "ISK", "INR", "IDR", "ILS", "KZT", "KRW", "KWD", "LYD", "MYR", "MUR", "NPR", "NZD", "NOK", "OMR", "PKR", "PLN", "QAR", "RUB", "SAR", "SGD", "ZAR", "LKR", "SEK", "CHF", "THB", "TTD"]
 ratesForBase = [r for r in rates if r != "USD" and r != "EUR" and r != "GBP"]
 
-year = 2011
-month = 5
-day = 4
-
+i_year = 2011
+i_month = 5
+i_day = 3
 days_31 = [1,3,5,7,8,10,12]
 days_30 = [4,6,9,11]
 
+today_string = time.strftime("%Y-%m-%d",time.gmtime()) # figured this out using the Python datasheet
 
 base = random.choice(ratesForBase)
 
-def increment_date():
-
+def increment_date(year, month, day):
+    """A function to increment the date and returns date in yr-mos-day format as a string."""
+    # incrementing dates depending on the month
     if day == 31 and month == 12:
         year += 1
     elif day == 31 and month in days_31:
@@ -32,7 +33,17 @@ def increment_date():
     else:
         day += 1
 
-    return f"{year}-{month}-{day}"
+    # turning date into a string. Adds a zero ahead of day/month number if needed.
+    if day < 10 and month > 10:
+        date = f"{year}-{month}-0{day}"
+    elif day < 10 and month < 10:
+        date = f"{year}-0{month}-0{day}"
+    elif day > 10 and month < 10:
+        date = f"{year}-0{month}-{day}"
+    else:
+        date = f"{year}-{month}-{day}"
+    
+    return date
 
 def get_data(date, base):
     # URL of thetData data

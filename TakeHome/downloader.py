@@ -9,8 +9,30 @@ import parser
 rates = ["EUR", "GBP", "USD", "DZD", "AUD", "BWP", "BND", "CAD", "CLP", "CNY", "COP", "CZK", "DKK", "HUF", "ISK", "INR", "IDR", "ILS", "KZT", "KRW", "KWD", "LYD", "MYR", "MUR", "NPR", "NZD", "NOK", "OMR", "PKR", "PLN", "QAR", "RUB", "SAR", "SGD", "ZAR", "LKR", "SEK", "CHF", "THB", "TTD"]
 ratesForBase = [r for r in rates if r != "USD" and r != "EUR" and r != "GBP"]
 
-date = "2011-05-04"
+year = 2011
+month = 5
+day = 4
+
+days_31 = [1,3,5,7,8,10,12]
+days_30 = [4,6,9,11]
+
+
 base = random.choice(ratesForBase)
+
+def increment_date():
+
+    if day == 31 and month == 12:
+        year += 1
+    elif day == 31 and month in days_31:
+        month += 1
+    elif day == 30 and month in days_30:
+        month += 1
+    elif day == 28 and month == 2 or day == 29 and month == 2:
+        month += 1
+    else:
+        day += 1
+
+    return f"{year}-{month}-{day}"
 
 def get_data(date, base):
     # URL of thetData data
@@ -27,6 +49,8 @@ def get_data(date, base):
 
     # Convert the dictionary to a JSON string
     return json.dumps(data_dict, indent=4)
+
+
 
 
 

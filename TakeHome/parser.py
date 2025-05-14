@@ -1,11 +1,11 @@
 import json
 import re
 
-def read_data(log_filepath):
+def read_data(dictionary):
     # structure taken from Mr. Power's Lecture 6 notes
     try: 
-        with open(log_filepath, "r") as file:
-            lines = file.readlines()
+        with open(dictionary, "r") as info:
+            lines = info.readlines()
         return lines
     except:
         FileNotFoundError

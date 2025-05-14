@@ -5,7 +5,7 @@ import random
 import threading
 from queue import Queue, Empty
 import time
-import parser # importing my own files
+#import parser # importing my own files
 from increment_date import Date, today_str # importing my own files
 
 rates = ["EUR", "GBP", "USD", "DZD", "AUD", "BWP", "BND", "CAD", "CLP", "CNY", "COP", "CZK", "DKK", "HUF", "ISK", "INR", "IDR", "ILS", "KZT", "KRW", "KWD", "LYD", "MYR", "MUR", "NPR", "NZD", "NOK", "OMR", "PKR", "PLN", "QAR", "RUB", "SAR", "SGD", "ZAR", "LKR", "SEK", "CHF", "THB", "TTD"]
@@ -33,11 +33,18 @@ def get_data(date, base):
     data_dict = xmltodict.parse(response.text)
 
     # Convert the dictionary to a JSON string
-    json_dict =  json.dumps(data_dict, indent=4)
+    json_data =  json.dumps(data_dict, indent=4)
 
-    # get the abbreviation of the target currency and the conversion rate
-    for i in json_dict["channel"]["item"]:
-        exc_dict[json_dict["channel"]["item"][i]["targetCurrency"]] = json_dict["channel"]["item"][i]["exchangeRate"]
+    # Write the JSON data to a file to save raw data
+    with open(f"{date}_exchange_rates_{base}.json", "w") as raw_data:
+        raw_data.write(json_data)
+
+    # write specific information to a new dictionary
+    with open(f"{date}_exchange_rates_{base}.json", "r") as json_dict:
+        
+        # save the abbreviation of the target currency and the conversion rate to the new dict
+        for i in json_dict["channel"]["item"]:
+            exc_dict[json_dict["channel"]["item"][i]["targetCurrency"]] = json_dict["channel"]["item"][i]["exchangeRate"] 
 
 def worker(work_queue): # taken from Mr. Power's notes
     while not work_queue.empty():
@@ -67,19 +74,10 @@ def threaded_pool(): # taken from Mr. Power's notes
     while threads:    #used to delay the time output lines
         threads.pop().join
 
-
-
 while date_str <= today_str:
     threaded_pool()
     date.increment_date() # increments the yr/mo/day values in the class Date
-    
-    #Print the JSON data
-    #print(json_data)
 
-    # Optionally, write the JSON data to a file
-    with open(f"{date}_exchange_rates_{base}.json", "w") as json_file:
-        json_file.write(exc_dict)
-    
-
-
-
+    # Write the new dictionary to a JSON file
+    with open(f"{base}_exchange_rates.json", "w") as rate_dict:
+        rate_dict.write(exc_dict)

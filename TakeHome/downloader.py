@@ -4,6 +4,7 @@ import json
 import random
 import threading
 from queue import Queue, Empty
+import time
 import parser # importing my own files
 from increment_date import Date, today_str # importing my own files
 
@@ -12,12 +13,15 @@ ratesForBase = [r for r in rates if r != "USD" and r != "EUR" and r != "GBP"]
 base_choice = random.choice(ratesForBase)
 base = base_choice
 
+# initializing the way days will be counted
 date = Date() # intitalizing starting values in Date 2011-05-04
 date_str = date.return_date() # chaging starting values to a string
 
+# storing rate values in a dictionary
 exc_dict = {}
 
 def get_data(date, base):
+    """Retreives data from floatrates.com"""
     # URL of thetData data
     url = f"https://www.floatrates.com/historical-exchange-rates.html?operation=rates&pb_id=1775&page=historical&currency_date={date}&base_currency_code={base}&format_type=xml"
     
@@ -34,8 +38,6 @@ def get_data(date, base):
     # get the abbreviation of the target currency and the conversion rate
     for i in json_dict["channel"]["item"]:
         exc_dict[json_dict["channel"]["item"][i]["targetCurrency"]] = json_dict["channel"]["item"][i]["exchangeRate"]
-
-
 
 def worker(work_queue): # taken from Mr. Power's notes
     while not work_queue.empty():
@@ -66,25 +68,24 @@ def threaded_pool(): # taken from Mr. Power's notes
         threads.pop().join
 
 
-threaded_pool()
 
+if date_str == today_str:
+    a = 1
 
-
-
-if date_str != today_str:
-    
-    # join the threads for threading
-    a = 1    
 else: 
-    # continue??
-
+    
+    threaded_pool()
     date.increment_date() # increments the yr/mo/day values in the class Date
+    
+    #Print the JSON data
+    #print(json_data)
+
+    # Optionally, write the JSON data to a file
+    with open(f"{date}_exchange_rates_{base}.json", "w") as json_file:
+        json_file.write(exc_dict)
+
+    time.sleep(0.5) # trying to allow threaded pool a chance to finish
+    
 
 
 
-# Print the JSON data
-##print(json_data)
-
-# # Optionally, write the JSON data to a file
-# with open(f"{date}_exchange_rates_{base}.json", "w") as json_file:
-#     json_file.write(json_data)

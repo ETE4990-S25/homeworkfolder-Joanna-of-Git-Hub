@@ -10,8 +10,7 @@ from increment_date import Date, today_str # importing my own files
 
 rates = ["EUR", "GBP", "USD", "DZD", "AUD", "BWP", "BND", "CAD", "CLP", "CNY", "COP", "CZK", "DKK", "HUF", "ISK", "INR", "IDR", "ILS", "KZT", "KRW", "KWD", "LYD", "MYR", "MUR", "NPR", "NZD", "NOK", "OMR", "PKR", "PLN", "QAR", "RUB", "SAR", "SGD", "ZAR", "LKR", "SEK", "CHF", "THB", "TTD"]
 ratesForBase = [r for r in rates if r != "USD" and r != "EUR" and r != "GBP"]
-base_choice = random.choice(ratesForBase)
-base = base_choice
+base = random.choice(ratesForBase)
 
 # initializing the way days will be counted
 date = Date() # intitalizing starting values in Date 2011-05-04
@@ -20,10 +19,10 @@ date_str = date.return_date() # chaging starting values to a string
 # storing rate values in a dictionary
 exc_dict = {}
 
-def get_data(date, base):
+def get_data(date_str, base):
     """Retreives data from floatrates.com"""
     # URL of thetData data
-    url = f"https://www.floatrates.com/historical-exchange-rates.html?operation=rates&pb_id=1775&page=historical&currency_date={date}&base_currency_code={base}&format_type=xml"
+    url = f"https://www.floatrates.com/historical-exchange-rates.html?operation=rates&pb_id=1775&page=historical&currency_date={date_str}&base_currency_code={base}&format_type=xml"
     
     # Fetch the XML data
     response = requests.get(url)
@@ -36,16 +35,22 @@ def get_data(date, base):
     json_data =  json.dumps(data_dict, indent=4)
 
     # Write the JSON data to a file to save raw data
-    with open(f"{date}_exchange_rates_{base}.json", "w") as raw_data:
+    with open(f"{date_str}_exchange_rates_{base}.json", "w") as raw_data:
         raw_data.write(json_data)
 
-    # write specific information to a new dictionary
-    with open(f"{date}_exchange_rates_{base}.json", "r") as json_dict:
-        
-        # save the abbreviation of the target currency and the conversion rate to the new dict
-        for i in json_dict["channel"]["item"]:
-            exc_dict[json_dict["channel"]["item"][i]["targetCurrency"]] = json_dict["channel"]["item"][i]["exchangeRate"] 
 
+    # write specific information to a new dictionary
+    with open(f"{date_str}_exchange_rates_{base}.json") as file:
+        json_dict = json.load(file)
+
+    # save the abbreviation of the target currency and the conversion rate to the new dict
+    for info in json_dict["channel"]["item"]:
+        key = info["targetCurrency"]
+        value = info["exchangeRate"] 
+        
+        exc_dict[key] = value
+
+    
 def worker(work_queue): # taken from Mr. Power's notes
     while not work_queue.empty():
         try:

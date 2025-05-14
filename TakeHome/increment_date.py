@@ -17,14 +17,16 @@ class Date(object):
 
     def return_date(self):
         """Turning date values into a string. Adds a zero ahead of day/month number if needed."""
-        if self.day < 10 and self.month > 10:
+        date_str = "0"
+        
+        if self.day < 10 and self.month >= 10:
             date_str = f"{self.year}-{self.month}-0{self.day}"
         elif self.day < 10 and self.month < 10:
             date_str = f"{self.year}-0{self.month}-0{self.day}"
-        elif self.day > 10 and self.month < 10:
+        elif self.day >= 10 and self.month < 10:
             date_str = f"{self.year}-0{self.month}-{self.day}"
         else:
-            date_str = f"{self.year}-{self.month}-{self.day}"
+            date_str = f"{self.year}-{self.month}-{self.day}" 
         
         return date_str
     
@@ -44,10 +46,9 @@ class Date(object):
             self.month += 1
             self.day = 1
         
-        elif self.month == 2:
-            if self.day == 29 or self.day == 28:
-                self.month += 1
-                self.day = 1
+        elif self.month == 2 and self.day == 28:
+            self.month += 1
+            self.day = 1
         
         else:
             self.day += 1

@@ -2,10 +2,6 @@ import requests
 import xmltodict
 import json
 import random
-import threading
-from queue import Queue, Empty
-import time
-#import parser # importing my own files
 from increment_date import Date, today_str # importing my own files
 
 rates = ["EUR", "GBP", "USD", "DZD", "AUD", "BWP", "BND", "CAD", "CLP", "CNY", "COP", "CZK", "DKK", "HUF", "ISK", "INR", "IDR", "ILS", "KZT", "KRW", "KWD", "LYD", "MYR", "MUR", "NPR", "NZD", "NOK", "OMR", "PKR", "PLN", "QAR", "RUB", "SAR", "SGD", "ZAR", "LKR", "SEK", "CHF", "THB", "TTD"]
@@ -49,40 +45,3 @@ def get_data(date_str, base):
         value = info["exchangeRate"] 
         
         exc_dict[key] = value
-
-    
-def worker(work_queue): # taken from Mr. Power's notes
-    while not work_queue.empty():
-        try:
-            item = work_queue.get(block=False)
-        except Empty:
-            break
-        else:
-            get_data(date_str,base)
-            work_queue.task_done()
-
-def threaded_pool(): # taken from Mr. Power's notes           
-    work_queue = Queue()
-
-    for base in ratesForBase:
-        work_queue.put(base)
-        threads = [
-            threading.Thread(target=worker, args=(work_queue,)) 
-            for _ in range(5)
-        ]
-    
-    for thread in threads:
-        thread.start()
-
-    work_queue.join()
-
-    while threads:    #used to delay the time output lines
-        threads.pop().join
-
-while date_str <= today_str:
-    threaded_pool()
-    date.increment_date() # increments the yr/mo/day values in the class Date
-
-    # Write the new dictionary to a JSON file
-    with open(f"{base}_exchange_rates.json", "w") as rate_dict:
-        rate_dict.write(exc_dict)

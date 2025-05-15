@@ -32,13 +32,3 @@ def threaded_pool(): # taken from Mr. Power's notes
 
     while threads:    #used to delay the time output lines
         threads.pop().join
-
-threaded_pool()
-
-# while date_str <= today_str:
-#     date.increment_date() # increments the yr/mo/day values in the class Date
-
-# Write the new dictionary to a JSON file
-exc_dict_json = json.dumps(exc_dict, indent=4)
-with open(f"{base}_exchange_rates.json", "w") as rate_dict:
-    rate_dict.write(exc_dict_json)

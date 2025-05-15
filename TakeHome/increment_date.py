@@ -27,7 +27,7 @@ class Date(object):
             date_str = f"{self.year}-0{self.month}-{self.day}"
         else:
             date_str = f"{self.year}-{self.month}-{self.day}" 
-        
+
         return date_str
     
     def increment_date(self):

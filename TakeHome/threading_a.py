@@ -3,8 +3,14 @@ from queue import Queue, Empty
 import time
 import json
 from increment_date import Date, today_str # importing my own files
-from downloader import get_data, date_str, base, ratesForBase, exc_dict
-    
+from downloader import get_data, date_str, base, ratesForBase, exc_dict   
+
+lock = threading.Lock()
+
+def safe_inc_date():
+    with lock:
+        Date.increment_date()
+
 def worker(work_queue): # taken from Mr. Power's notes
     while not work_queue.empty():
         try:

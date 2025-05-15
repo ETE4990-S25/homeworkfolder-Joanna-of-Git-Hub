@@ -18,7 +18,7 @@ exc_dict = {}
 def get_data(a_date_str, a_base):
     """Retreives data from floatrates.com"""
     # URL of thetData data
-    url = f"https://www.floatrates.com/historical-exchange-rates.html?operation=rates&pb_id=1775&page=historical&currency_date={date_str}&base_currency_code={base}&format_type=xml"
+    url = f"https://www.floatrates.com/historical-exchange-rates.html?operation=rates&pb_id=1775&page=historical&currency_date={a_date_str}&base_currency_code={a_base}&format_type=xml"
     
     # Fetch the XML data
     response = requests.get(url)

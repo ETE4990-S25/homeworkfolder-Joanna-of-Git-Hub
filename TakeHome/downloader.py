@@ -15,7 +15,7 @@ date_str = date.return_date() # chaging starting values to a string
 # storing rate values in a dictionary
 exc_dict = {}
 
-def get_data(date_str, base):
+def get_data(a_date_str, a_base):
     """Retreives data from floatrates.com"""
     # URL of thetData data
     url = f"https://www.floatrates.com/historical-exchange-rates.html?operation=rates&pb_id=1775&page=historical&currency_date={date_str}&base_currency_code={base}&format_type=xml"
@@ -31,17 +31,19 @@ def get_data(date_str, base):
     json_data =  json.dumps(data_dict, indent=4)
 
     # Write the JSON data to a file to save raw data
-    with open(f"{date_str}_exchange_rates_{base}.json", "w") as raw_data:
+    with open(f"{a_date_str}_exchange_rates_{a_base}.json", "w") as raw_data:
         raw_data.write(json_data)
 
 
     # write specific information to a new dictionary
-    with open(f"{date_str}_exchange_rates_{base}.json") as file:
+    with open(f"{a_date_str}_exchange_rates_{a_base}.json") as file:
         json_dict = json.load(file)
 
     # save the abbreviation of the target currency and the conversion rate to the new dict
     for info in json_dict["channel"]["item"]:
-        key = info["targetCurrency"]
-        value = info["exchangeRate"] 
+        target = info["targetCurrency"]
+        exchange = info["exchangeRate"] 
+        inverse = info["inverseRate"]
         
-        exc_dict[key] = value
+        exc_dict[target] = exchange
+        exc_dict[f"inverse{target}"] = inverse

@@ -43,7 +43,7 @@ def get_data(a_date_str, a_base):
     for info in json_dict["channel"]["item"]:
         target = info["targetCurrency"]
         exchange = info["exchangeRate"] 
-        inverse = info["inverseRate"]
+        # inverse = info["inverseRate"]
         
         exc_dict[target] = exchange
-        exc_dict[f"inverse{target}"] = inverse
+        # exc_dict[f"inverse{target}"] = inverse

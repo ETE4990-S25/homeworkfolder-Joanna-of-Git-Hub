@@ -14,6 +14,9 @@ class Date(object):
         self.year = year
         self.month = month
         self.day = day
+        
+        self.days_31 = [1,3,5,7,8,10,12]
+        self.days_30 = [4,6,9,11]
 
     def return_date(self):
         """Turning date values into a string. Adds a zero ahead of day/month number if needed."""
@@ -38,11 +41,11 @@ class Date(object):
             self.month = 1
             self.day = 1
         
-        elif self.day == 31 and self.month in days_31:
+        elif self.day == 31 and self.month in self.days_31:
             self.month += 1
             self.day = 1
         
-        elif self.day == 30 and self.month in days_30:
+        elif self.day == 30 and self.month in self.days_30:
             self.month += 1
             self.day = 1
         

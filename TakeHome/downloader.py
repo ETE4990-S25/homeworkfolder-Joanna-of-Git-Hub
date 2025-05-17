@@ -2,7 +2,7 @@ import requests
 import xmltodict
 import json
 import random
-# from increment_date import Date, today_str # importing my own files
+from increment_date import Date, today_str # importing my own files
 
 rates = ["EUR", "GBP", "USD", "DZD", "AUD", "BWP", "BND", "CAD", "CLP", "CNY", "COP", "CZK", "DKK", "HUF", "ISK", "INR", "IDR", "ILS", "KZT", "KRW", "KWD", "LYD", "MYR", "MUR", "NPR", "NZD", "NOK", "OMR", "PKR", "PLN", "QAR", "RUB", "SAR", "SGD", "ZAR", "LKR", "SEK", "CHF", "THB", "TTD"]
 ratesForBase = [r for r in rates if r != "USD" and r != "EUR" and r != "GBP"]
@@ -10,9 +10,7 @@ base = random.choice(ratesForBase)
 
 # storing rate values in a list to make into csv
 exc_list = [] # has indicies 0-39
-for rate in rates:
-    exc_list.append(rate)
-
+i = 0
 
 def get_data(a_date_str, a_base):
     """Retreives data from floatrates.com"""
@@ -39,13 +37,15 @@ def write_data(a_date_str, a_base):
     with open(f"{a_date_str}_exchange_rates_{a_base}.json") as file:
         json_dict = json.load(file)
 
+    index = i
 
     # save the abbreviation of the target currency and the conversion rate to the new dict
-    i = 0
     for info in json_dict["channel"]["item"]:
         target = info["targetCurrency"]
         exchange = info["exchangeRate"] 
         
-        if target == rates[i]:
+        if index < 40:
+            exc_list.append(target)
+            index += 1
+        else:
             exc_list.append(exchange)
-            i += 1

@@ -1,40 +1,36 @@
+# attempt without thread pooling
 import threading
-from queue import Queue, Empty
+from increment_date import Date # importing my own files
+from downloader import get_data, base
 import time
 import json
-from increment_date import Date, today_str # importing my own files
-from downloader import get_data, date_str, base, ratesForBase, exc_dict   
 
+date = Date()
+date_str = date.return_date()
+
+today = Date(year=2011,month=5,day=20)
+today_str = today.return_date()
+
+threads = []
 lock = threading.Lock()
 
-def safe_inc_date():
-    with lock:
-        Date.increment_date()
+info = []
+json_dict = None
 
-def worker(work_queue): # taken from Mr. Power's notes
-    while not work_queue.empty():
-        try:
-            item = work_queue.get(block=False)
-        except Empty:
-            break
-        else:
-            get_data(date_str,base)
-            work_queue.task_done()
+while date_str <= today_str:
+    for i in range(5):
+        with lock:
+            thread = threading.Thread(target=get_data,args=(date_str,base))
+            threads.append(thread)
+            thread.start()
 
-def threaded_pool(): # taken from Mr. Power's notes           
-    work_queue = Queue()
+            date.increment_date()
+            date_str = date.return_date()
 
-    for base in ratesForBase:
-        work_queue.put(base)
-        threads = [
-            threading.Thread(target=worker, args=(work_queue,)) 
-            for _ in range(5)
-        ]
-    
+    #print(f"During: {threading.active_count()}")
+
     for thread in threads:
-        thread.start()
+        thread.join()
 
-    work_queue.join()
 
-    while threads:    #used to delay the time output lines
-        threads.pop().join
+#print(f"After: {threading.active_count()}")   

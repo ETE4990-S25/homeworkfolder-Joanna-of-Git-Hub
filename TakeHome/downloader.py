@@ -8,8 +8,11 @@ rates = ["EUR", "GBP", "USD", "DZD", "AUD", "BWP", "BND", "CAD", "CLP", "CNY", "
 ratesForBase = [r for r in rates if r != "USD" and r != "EUR" and r != "GBP"]
 base = random.choice(ratesForBase)
 
-# storing rate values in a dictionary
-exchange = []
+# storing rate values in a list to make into csv
+exc_list = [] # has indicies 0-39
+for rate in rates:
+    exc_list.append(rate)
+
 
 def get_data(a_date_str, a_base):
     """Retreives data from floatrates.com"""
@@ -38,10 +41,11 @@ def write_data(a_date_str, a_base):
 
 
     # save the abbreviation of the target currency and the conversion rate to the new dict
+    i = 0
     for info in json_dict["channel"]["item"]:
         target = info["targetCurrency"]
         exchange = info["exchangeRate"] 
-        # inverse = info["inverseRate"]
         
-        exchange[target] = exchange
-        # exc_dict[f"inverse{target}"] = inverse
+        if target == rates[i]:
+            exc_list.append(exchange)
+            i += 1
